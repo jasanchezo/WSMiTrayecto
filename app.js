@@ -43,11 +43,21 @@ appExpress.get("/getVehicles", function(req, res) {
     ]
 
     // SE IMPRIME UN MENSAJE EN CONSOLA PARA CONFIRMAR EL USO DEL MÉTODO
-    console.log("getVehicles " + (new Date).toISOString().substring(0, 10))
-    console.log(req.originalUrl.toString())
+    console.log((new Date).toISOString().substring(0, 10) + " - getVehicles : " + req.originalUrl.toString())
     
     // SE DEVUELVE EN LA SALIDA ESTANDAR EL OBJETO JSON
     res.send(datos)
+})
+
+/**
+ * DECLARAMOS UN MÉTODO PARA GUARDAR UN PUNTO DEL RECORRIDO DE UN RECORRIDO
+ */
+appExpress.get("/addpoint/:kilometers/:tag/:latitud/:longitud", function(req, res) {
+    /**
+     * CÓDIGO PARA GUARDAR LOS DATOS RECIBIDOS
+     */
+
+    console.log((new Date).toISOString().substring(0, 10) + " - addpoint: " + req.params.kilometers + ", " + req.params.tag + ", " + req.params.latitud + ", " + req.params.longitud)
 })
 
 /**
@@ -58,28 +68,22 @@ appExpress.get("/getVehicles", function(req, res) {
 appExpress.get("/getFavoriteVehicles/:username", function(req, res) {
     let datos = [
         { 
-            latitud : 20.5961356,
-            longitud : -101.2015589,
-            altitud : 15, 
-            time : req.params.dataDate,
-            temperatura : 31.05,
-            dispositivo : "Mi Casa"
+            id : 1,
+            smallname : "Hilux",
+            description : "vehículo asignado al departamento de sistemas de información",
+            imageURL : "http://imgs.resources.com/img123.jpg"
         },
         {
-            latitud : 20.517969,
-            longitud : -101.207230,
-            altitud : 15, 
-            time : req.params.dataDate,
-            temperatura : 35.05,
-            dispositivo : "Mi Vecino"
+            id : 2,
+            smallname : "NP 200 1",
+            description : "vehículo asignado a la coordinación de redes",
+            imageURL : "http://imgs.resources.com/img456.jpg"
         },
         { 
-            latitud : 20.5970999,
-            longitud : -101.206893,
-            altitud : 15, 
-            time : req.params.dataDate,
-            temperatura : 45.05,
-            dispositivo : "No se sabe"
+            id : 3,
+            smallname : "NP 200 2",
+            description : "vehículo asignado a la coordinación de conectividad",
+            imageURL : "http://imgs.resources.com/img789.jpg"
         }
     ]
 
@@ -92,5 +96,5 @@ appExpress.get("/getFavoriteVehicles/:username", function(req, res) {
  * SE IMPRIME UN MENSAJE PARA ASEGURARNOS DE QUE SE EJECUTÓ CORRECTAMENTE
  */
 appExpress.listen(3000, function() {
-    console.log("Aplicacion ejecutándose")
+    console.log("Aplicacion ejecutándose ...")
 })
